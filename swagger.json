@@ -1,0 +1,201 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Scripture Verse API",
+    "description": "REST API for managing scripture verses",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api/scriptures",
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": ["Scriptures"],
+        "summary": "Get all scriptures",
+        "responses": {
+          "200": {
+            "description": "List of all scriptures",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Scripture"
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "post": {
+        "tags": ["Scriptures"],
+        "summary": "Create a new scripture",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Scripture"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Scripture created",
+            "schema": {
+              "$ref": "#/definitions/Scripture"
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "get": {
+        "tags": ["Scriptures"],
+        "summary": "Get a scripture by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Scripture ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scripture found",
+            "schema": {
+              "$ref": "#/definitions/Scripture"
+            }
+          },
+          "404": {
+            "description": "Scripture not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Scriptures"],
+        "summary": "Update a scripture",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Scripture ID"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Scripture"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scripture updated",
+            "schema": {
+              "$ref": "#/definitions/Scripture"
+            }
+          },
+          "404": {
+            "description": "Scripture not found"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Scriptures"],
+        "summary": "Delete a scripture",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Scripture ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scripture deleted"
+          },
+          "404": {
+            "description": "Scripture not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Scripture": {
+      "type": "object",
+      "required": ["book", "bookName", "chapter", "verse", "text"],
+      "properties": {
+        "book": {
+          "type": "string",
+          "example": "Genesis"
+        },
+        "bookName": {
+          "type": "string",
+          "example": "Genesis"
+        },
+        "chapter": {
+          "type": "number",
+          "example": 1
+        },
+        "verse": {
+          "type": "string",
+          "example": "1"
+        },
+        "text": {
+          "type": "string",
+          "example": "In the beginning God created..."
+        },
+        "insight": {
+          "type": "string",
+          "example": "God's creative power and design"
+        },
+        "doctrine": {
+          "type": "string",
+          "example": "Creation"
+        },
+        "crossReferences": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "example": ["John 1:1", "Colossians 1:16"]
+        },
+        "userId": {
+          "type": "string",
+          "example": "user123"
+        }
+      }
+    }
+  }
+}

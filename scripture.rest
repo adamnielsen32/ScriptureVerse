@@ -1,0 +1,80 @@
+### Scripture Verse API - REST Client Testing
+
+### Get all scriptures
+GET http://localhost:3000/api/scriptures
+
+### Get one scripture by ID
+GET http://localhost:3000/api/scriptures/6987892dbe8c54144d3407a3
+
+
+### POST
+POST http://localhost:3000/api/scriptures
+Content-Type: application/json
+
+{
+  "book": "Genesis",
+  "bookName": "Genesis",
+  "chapter": 1,
+  "verse": "1",
+  "text": "In the beginning God created the heavens and the earth.",
+  "insight": "God's creative power and design",
+  "doctrine": "Creation",
+  "crossReferences": ["John 1:1", "Colossians 1:16"],
+  "userId": "user123"
+}
+
+### PUT
+PUT http://localhost:3000/api/scriptures/65f1a2b3c4d5e6f7g8h9i0j1
+Content-Type: application/json
+
+{
+  "book": "Genesis",
+  "bookName": "Genesis",
+  "chapter": 1,
+  "verse": "1",
+  "text": "In the beginning God created the heavens and the earth. (Updated)",
+  "insight": "God's creative power and design - Updated",
+  "doctrine": "Creation",
+  "crossReferences": ["John 1:1", "Colossians 1:16"],
+  "userId": "user123"
+}
+
+### DELETE
+DELETE http://localhost:3000/api/scriptures/65f1a2b3c4d5e6f7g8h9i0j1
+
+
+### Create Scripture (POST)
+POST http://localhost:3000/api/scriptures
+Content-Type: application/json
+
+{
+  "book": "John",
+  "bookName": "John",
+  "chapter": 3,
+  "verse": "16",
+  "text": "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+  "insight": "God's love for humanity",
+  "doctrine": "Salvation",
+  "crossReferences": ["Romans 5:8"],
+  "userId": "user456"
+}
+
+### Update Scripture (PUT)
+PUT http://localhost:3000/api/scriptures/65f1a2b3c4d5e6f7g8h9i0j2
+Content-Type: application/json
+
+{
+  "book": "John",
+  "bookName": "John",
+  "chapter": 3,
+  "verse": "16",
+  "text": "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. (Updated)",
+  "insight": "God's love for humanity - Deeply studied",
+  "doctrine": "Salvation",
+  "crossReferences": ["Romans 5:8", "1 John 4:8"],
+  "userId": "user456"
+}
+
+### Delete Scripture (DELETE)
+DELETE http://localhost:3000/api/scriptures/65f1a2b3c4d5e6f7g8h9i0j2
+
