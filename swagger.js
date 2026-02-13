@@ -6,9 +6,9 @@ const doc = {
     description: 'REST API for managing scripture verses',
     version: '1.0.0'
   },
-  host: 'localhost:3000',
+  host: 'https://scriptureverse.onrender.com',
   basePath: '/api/scriptures',
-  schemes: ['http'],
+  schemes: ['https'],
   consumes: ['application/json'],
   produces: ['application/json'],
   definitions: {

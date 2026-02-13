@@ -111,7 +111,7 @@ Content-Type: application/json
 }
 
 ### PUT (Production)
-PUT https://scriptureverse.onrender.com/api/scriptures/65f1a2b3c4d5e6f7g8h9i0j1
+PUT https://scriptureverse.onrender.com/api/scriptures/698ea0d4f4bd1b330fa12798
 Content-Type: application/json
 
 {
@@ -127,7 +127,7 @@ Content-Type: application/json
 }
 
 ### DELETE (Production)
-DELETE https://scriptureverse.onrender.com/api/scriptures/65f1a2b3c4d5e6f7g8h9i0j1
+DELETE https://scriptureverse.onrender.com/api/scriptures/698ea0d4f4bd1b330fa12798
 
 
 ### Create Scripture (POST - Production)
