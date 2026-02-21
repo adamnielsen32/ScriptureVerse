@@ -26,7 +26,9 @@ export const getScriptureById = async (req, res) => {
 // Create a new scripture
 export const createScripture = async (req, res) => {
   try {
-    const scripture = new Scripture(req.body);
+    if (!req.user) return res.status(401).json({ error: "Unauthorized" });
+    const body = { ...req.body, userId: req.user.id };
+    const scripture = new Scripture(body);
     const savedScripture = await scripture.save();
     res.status(201).json(savedScripture);
   } catch (error) {
@@ -37,14 +39,14 @@ export const createScripture = async (req, res) => {
 // Update scripture
 export const updateScripture = async (req, res) => {
   try {
-    const scripture = await Scripture.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true
-    });
-    if (!scripture) {
-      return res.status(404).json({ error: "Scripture not found" });
-    }
-    res.json(scripture);
+    if (!req.user) return res.status(401).json({ error: "Unauthorized" });
+    const scripture = await Scripture.findById(req.params.id);
+    if (!scripture) return res.status(404).json({ error: "Scripture not found" });
+    if (scripture.userId && scripture.userId.toString() !== req.user.id)
+      return res.status(403).json({ error: "Forbidden" });
+    Object.assign(scripture, req.body);
+    const updated = await scripture.save();
+    res.json(updated);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -53,10 +55,12 @@ export const updateScripture = async (req, res) => {
 // Delete scripture
 export const deleteScripture = async (req, res) => {
   try {
-    const scripture = await Scripture.findByIdAndDelete(req.params.id);
-    if (!scripture) {
-      return res.status(404).json({ error: "Scripture not found" });
-    }
+    if (!req.user) return res.status(401).json({ error: "Unauthorized" });
+    const scripture = await Scripture.findById(req.params.id);
+    if (!scripture) return res.status(404).json({ error: "Scripture not found" });
+    if (scripture.userId && scripture.userId.toString() !== req.user.id)
+      return res.status(403).json({ error: "Forbidden" });
+    await Scripture.findByIdAndDelete(req.params.id);
     res.json({ message: "Scripture deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });

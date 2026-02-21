@@ -9,6 +9,11 @@ import {
 
 const router = express.Router();
 
+const requireAuth = (req, res, next) => {
+  if (req.isAuthenticated && req.isAuthenticated()) return next();
+  return res.status(401).json({ error: "Unauthorized" });
+};
+
 /**
  * #swagger.tags = ['Scriptures']
  * #swagger.summary = 'Get all scriptures'
@@ -39,7 +44,7 @@ router.get("/:id", getScriptureById);
  * #swagger.responses[400] = { description: 'Invalid input' }
  * #swagger.responses[500] = { description: 'Server error' }
  */
-router.post("/", createScripture);
+router.post("/", requireAuth, createScripture);
 
 /**
  * #swagger.tags = ['Scriptures']
@@ -54,7 +59,7 @@ router.post("/", createScripture);
  * #swagger.responses[404] = { description: 'Scripture not found' }
  * #swagger.responses[500] = { description: 'Server error' }
  */
-router.put("/:id", updateScripture);
+router.put("/:id", requireAuth, updateScripture);
 
 /**
  * #swagger.tags = ['Scriptures']
@@ -64,6 +69,6 @@ router.put("/:id", updateScripture);
  * #swagger.responses[404] = { description: 'Scripture not found' }
  * #swagger.responses[500] = { description: 'Server error' }
  */
-router.delete("/:id", deleteScripture);
+router.delete("/:id", requireAuth, deleteScripture);
 
 export default router;
