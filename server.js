@@ -87,7 +87,11 @@ app.get("/", (req, res) => {
   if (req.user) {
     return res.send(`<h1>Welcome, ${req.user.displayName}</h1><p><a href='/auth/logout'>Log out</a></p>`);
   }
- 
+  res.send(`<h1>ScriptureVerse API</h1><p><a href='/auth/google'>Sign in with Google</a></p>`);
+});
+
+app.use((req, res) => {
+  res.status(404).json({ error: "Not found" });
 });
 
 const startServer = async () => {
