@@ -87,7 +87,7 @@ app.get("/", (req, res) => {
   if (req.user) {
     return res.send(`<h1>Welcome, ${req.user.displayName}</h1><p><a href='/auth/logout'>Log out</a></p>`);
   }
-  res.send(`<h1>ScriptureVerse API</h1><p><a href='/auth/google/callback'>Sign in with Google</a></p>`);
+ 
 });
 
 const startServer = async () => {
