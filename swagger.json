@@ -118,6 +118,14 @@
       },
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Scripture" }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -162,6 +170,12 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": { "$ref": "#/definitions/Scripture" }
           }
         ],
         "responses": {
