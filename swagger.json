@@ -5,147 +5,288 @@
     "description": "REST API for managing scripture verses",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "scriptureverse.onrender.com",
   "basePath": "/api/scriptures",
-  "schemes": ["http"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
-    "/": {
+    "/health": {
       "get": {
-        "tags": ["Scriptures"],
-        "summary": "Get all scriptures",
+        "description": "",
         "responses": {
           "200": {
-            "description": "List of all scriptures",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/Scripture"
-              }
-            }
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
           },
           "500": {
-            "description": "Server error"
+            "description": "Internal Server Error"
           }
         }
       },
       "post": {
-        "tags": ["Scriptures"],
-        "summary": "Create a new scripture",
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/google": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/google/callback": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/auth/failure": {
+      "get": {
+        "description": "",
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/me": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/scriptures/": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    },
+    "/api/scriptures/{id}": {
+      "get": {
+        "description": "",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
+            "name": "id",
+            "in": "path",
             "required": true,
-            "schema": {
-              "$ref": "#/definitions/Scripture"
-            }
+            "type": "string"
           }
         ],
         "responses": {
-          "201": {
-            "description": "Scripture created",
-            "schema": {
-              "$ref": "#/definitions/Scripture"
-            }
+          "200": {
+            "description": "OK"
           },
-          "400": {
-            "description": "Invalid input"
+          "404": {
+            "description": "Not Found"
           },
           "500": {
-            "description": "Server error"
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
     },
     "/{id}": {
       "get": {
-        "tags": ["Scriptures"],
-        "summary": "Get a scripture by ID",
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string",
-            "description": "Scripture ID"
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Scripture found",
-            "schema": {
-              "$ref": "#/definitions/Scripture"
-            }
+            "description": "OK"
           },
           "404": {
-            "description": "Scripture not found"
+            "description": "Not Found"
           },
           "500": {
-            "description": "Server error"
+            "description": "Internal Server Error"
           }
         }
       },
       "put": {
-        "tags": ["Scriptures"],
-        "summary": "Update a scripture",
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string",
-            "description": "Scripture ID"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/Scripture"
-            }
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Scripture updated",
-            "schema": {
-              "$ref": "#/definitions/Scripture"
-            }
-          },
-          "404": {
-            "description": "Scripture not found"
+            "description": "OK"
           },
           "400": {
-            "description": "Bad request"
+            "description": "Bad Request"
           },
-          "500": {
-            "description": "Server error"
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
       "delete": {
-        "tags": ["Scriptures"],
-        "summary": "Delete a scripture",
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "string",
-            "description": "Scripture ID"
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Scripture deleted"
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
-            "description": "Scripture not found"
+            "description": "Not Found"
           },
           "500": {
-            "description": "Server error"
+            "description": "Internal Server Error"
           }
         }
       }
@@ -154,46 +295,160 @@
   "definitions": {
     "Scripture": {
       "type": "object",
-      "required": ["book", "bookName", "chapter", "verse", "text"],
       "properties": {
-        "book": {
+        "type": {
           "type": "string",
-          "example": "Genesis"
+          "example": "object"
         },
-        "bookName": {
-          "type": "string",
-          "example": "Genesis"
+        "properties": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "book": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Genesis"
+                }
+              }
+            },
+            "bookName": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "Genesis"
+                }
+              }
+            },
+            "chapter": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "number"
+                },
+                "example": {
+                  "type": "number",
+                  "example": 1
+                }
+              }
+            },
+            "verse": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "1"
+                }
+              }
+            },
+            "text": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "example": {
+                  "type": "string",
+                  "example": "In the beginning God created..."
+                }
+              }
+            },
+            "insight": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "doctrine": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "crossReferences": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "array"
+                },
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "example": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "userId": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                }
+              }
+            },
+            "createdAt": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "example": "string"
+                },
+                "format": {
+                  "type": "string",
+                  "example": "date-time"
+                }
+              }
+            }
+          }
         },
-        "chapter": {
-          "type": "number",
-          "example": 1
-        },
-        "verse": {
-          "type": "string",
-          "example": "1"
-        },
-        "text": {
-          "type": "string",
-          "example": "In the beginning God created..."
-        },
-        "insight": {
-          "type": "string",
-          "example": "God's creative power and design"
-        },
-        "doctrine": {
-          "type": "string",
-          "example": "Creation"
-        },
-        "crossReferences": {
+        "required": {
           "type": "array",
+          "example": [
+            "book",
+            "bookName",
+            "chapter",
+            "verse",
+            "text"
+          ],
           "items": {
             "type": "string"
-          },
-          "example": ["John 1:1", "Colossians 1:16"]
-        },
-        "userId": {
-          "type": "string",
-          "example": "user123"
+          }
         }
       }
     }
