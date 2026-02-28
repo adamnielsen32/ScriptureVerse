@@ -8,7 +8,7 @@ const doc = {
   },
   host: process.env.SWAGGER_HOST ||
     (process.env.NODE_ENV === 'production' ? 'scriptureverse.onrender.com' : 'localhost:3000'),
-  basePath: '/api/scriptures',
+  basePath: '/',
   schemes: process.env.NODE_ENV === 'production' ? ['https'] : ['http'],
   consumes: ['application/json'],
   produces: ['application/json'],
