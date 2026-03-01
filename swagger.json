@@ -309,160 +309,55 @@
   "definitions": {
     "Scripture": {
       "type": "object",
+      "required": [
+        "book",
+        "bookName",
+        "chapter",
+        "verse",
+        "text"
+      ],
       "properties": {
-        "type": {
+        "book": {
           "type": "string",
-          "example": "object"
+          "example": "Genesis"
         },
-        "properties": {
-          "type": "object",
-          "properties": {
-            "_id": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                }
-              }
-            },
-            "book": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "Genesis"
-                }
-              }
-            },
-            "bookName": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "Genesis"
-                }
-              }
-            },
-            "chapter": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "number"
-                },
-                "example": {
-                  "type": "number",
-                  "example": 1
-                }
-              }
-            },
-            "verse": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "1"
-                }
-              }
-            },
-            "text": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "example": {
-                  "type": "string",
-                  "example": "In the beginning God created..."
-                }
-              }
-            },
-            "insight": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                }
-              }
-            },
-            "doctrine": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                }
-              }
-            },
-            "crossReferences": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "array"
-                },
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "example": "string"
-                    }
-                  }
-                }
-              }
-            },
-            "userId": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                }
-              }
-            },
-            "createdAt": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string",
-                  "example": "string"
-                },
-                "format": {
-                  "type": "string",
-                  "example": "date-time"
-                }
-              }
-            }
-          }
+        "bookName": {
+          "type": "string",
+          "example": "Genesis"
         },
-        "required": {
+        "chapter": {
+          "type": "number",
+          "example": 1
+        },
+        "verse": {
+          "type": "string",
+          "example": "1"
+        },
+        "text": {
+          "type": "string",
+          "example": "In the beginning God created the heaven and the earth."
+        },
+        "insight": {
+          "type": "string",
+          "example": "God is the Creator of all things."
+        },
+        "doctrine": {
+          "type": "string",
+          "example": "Creation"
+        },
+        "crossReferences": {
           "type": "array",
-          "example": [
-            "book",
-            "bookName",
-            "chapter",
-            "verse",
-            "text"
-          ],
           "items": {
             "type": "string"
-          }
+          },
+          "example": ["John 1:1", "Hebrews 11:3"]
+        },
+        "userId": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     }
